@@ -1,0 +1,82 @@
+html {
+    max-width: 1500px;
+}
+
+#members {
+    /*
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: "auto auto auto";
+    grid-auto-columns: 25%;
+    grid-auto-rows: 1fr;
+    */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.member {
+    border: 2px solid black;
+    height: 500px;
+    width: 350px;
+    margin: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+	background-color: lightgrey;
+}
+
+.memberFeaturedIcon {
+    /*
+    flex: 1 0 100%;
+    margin-left: 90%;
+    max-height: 100%;
+    */
+    position: relative;
+    top: 2.5%;
+    left: 90%;
+}
+
+.memberImgWrapper {
+    flex: 1 0 100%;
+    max-width: 50%;
+    max-height: 50%;
+	margin: auto;
+}
+
+.memberImg {
+    border-radius: 50%;
+	height: auto;
+	width: 100%;
+}
+
+.memberName {
+    font-size: 32px;
+    flex: 1 0 100%;
+    text-align: center;
+    margin: 0;
+}
+
+.memberBio {
+    font-size: 24px;
+    flex: 1 0 100%;
+    margin: 0;
+    height: 96px;
+    margin-left: 5%;
+    overflow: auto;
+}
+
+.memberRoles {
+    flex: 1 0 100%;
+    display: flex;
+}
+
+.role {
+    margin: 5%;
+    padding: 5px 10px;
+    color: black;
+    font-size: 24px;
+    display: block;
+	margin-bottom: 0;
+	margin-top: 0;
+	height: 24px;
+}
