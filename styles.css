@@ -1,5 +1,8 @@
 html {
+    margin-left: 5%;
+    margin-right: 5%;
     max-width: 1500px;
+    background-color: lightgreen;
 }
 
 #members {
@@ -68,15 +71,46 @@ html {
 .memberRoles {
     flex: 1 0 100%;
     display: flex;
+    overflow: auto;
 }
 
 .role {
-    margin: 5%;
+    margin-left: 5%;
+    margin-right: 5px;
     padding: 5px 10px;
-    color: black;
+    color: white;
     font-size: 24px;
     display: block;
 	margin-bottom: 0;
 	margin-top: 0;
-	height: 24px;
+    height: 24px;
+}
+
+.roleId {
+    display: none;
+}
+
+#filterNameSection > * {
+    font-size: 24px;
+}
+
+#roles {
+    margin-top: 5px;
+    display: flex;
+}
+
+#roles > div {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+#filterMember {
+    background-color: lightblue;
+    margin-top: 5px;
+    font-size: 24px;
+}
+
+.page {
+    background-color: #40E0D0;
+    font-size: 16px;
 }
