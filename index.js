@@ -12,6 +12,7 @@ function OnLoad() {
     GetRoleData();
 }
 
+//Function that will get the members data and will set up the members on the page
 async function GetMemberData(url) {
     var xmlhttp = new XMLHttpRequest();
 
@@ -41,6 +42,7 @@ async function GetMemberData(url) {
     xmlhttp.send();
 }
 
+//Function that will get the roles data and will set up the roles on the page
 async function GetRoleData() {
     var xmlhttp = new XMLHttpRequest();
     var url = "http://sandbox.bittsdevelopment.com/code1/fetchroles.php";
@@ -78,6 +80,7 @@ async function GetRoleData() {
     xmlhttp.send();
 }
 
+//Function that create the Member (div) based on the memberData
 function CreateMember(memeberData) {
     //Check the member data
     //console.log(memeberData);
@@ -114,12 +117,13 @@ function CreateMember(memeberData) {
     memberName.setAttribute("class", "memberName");
     member.appendChild(memberName);
 
-    //Set up member name
+    //Set up member bio
     var memberBio = document.createElement("div");
     memberBio.innerHTML = memeberData.employeebio;
     memberBio.setAttribute("class", "memberBio");
     member.appendChild(memberBio);
 
+    //Set up the member roles
     var memberRoles = document.createElement("div");
     memberRoles.setAttribute("class", "memberRoles");
     for(var i = 0; i < memeberData.roles.length; i++) {
@@ -127,11 +131,13 @@ function CreateMember(memeberData) {
     }
     member.appendChild(memberRoles);
 
+    //Add the member to the members div
     members.appendChild(member);
 
     return member;
 }
 
+//Function that create the Role (div) based on the roleData 
 function CreateRole(roleData) {
     var memberRole = document.createElement("div");
     var memberId = document.createElement("div");
@@ -148,6 +154,7 @@ function CreateRole(roleData) {
     return memberRole;
 }
 
+//Function that create the Pagination buttons and set up the first page
 function CreatePagination() {
     //Clear the members
     var members = document.getElementById("members");
@@ -191,7 +198,9 @@ function CreatePagination() {
     currentPage = 0;
 }
 
+//Function that will add/remove from the Role filter
 function ToggleRole(roleId) {
+    //Remove the Role in the filter (do not search/find)
     if (rolesFilter.includes(roleId)) {
         //Find the roleId and splice it out
         for (var i = 0; i < rolesFilter.length; i++) {
@@ -201,11 +210,13 @@ function ToggleRole(roleId) {
             }   
         }
     }
+    //Add the Role to the filter
     else {
         rolesFilter.push(roleId);
     }
 }
 
+//Function that will filter the members based on the roles and name
 function FilterMembers() {
     var url = "http://sandbox.bittsdevelopment.com/code1/fetchemployees.php";
     if (rolesFilter.length > 1) {
@@ -221,21 +232,27 @@ function FilterMembers() {
 
     nameFilter = document.getElementById("filterName").value;
     //console.log(nameFilter);
+
     GetMemberData(url);
 }
 
+//Function that change the page when user clicks on the button for 'Next', 'Prev' and page number
 function ChangePage(page) {
     //Clear the members
     var members = document.getElementById("members");
     members.innerHTML = "";
+    //if user clicks on Prev button
     if (page === "prev") {
         currentPage--;
+        //if the page is past the end (beginning)
         if (currentPage === -1) {
             currentPage = 0;
         }
     }
+    //if user clicks on Next button
     else if (page === "next") {
         currentPage++;
+        //if the page is past the end
         if (currentPage * NUM_MEMBERS_PAGE_LIMIT > membersData.length) {
             currentPage = parseInt(membersData.length / NUM_MEMBERS_PAGE_LIMIT);
         }
@@ -243,9 +260,11 @@ function ChangePage(page) {
             currentPage = parseInt(membersData.length / NUM_MEMBERS_PAGE_LIMIT) - 1;
         }
     }
+    //if user clicks on Page number button
     else {
         currentPage = page - 1;
     }
+    //Show the member based on the page
     for (var i = 0; i < NUM_MEMBERS_PAGE_LIMIT && (currentPage * NUM_MEMBERS_PAGE_LIMIT) + i < membersData.length; i++) {
         members.appendChild(membersData[(currentPage * NUM_MEMBERS_PAGE_LIMIT) + i]);
     }
